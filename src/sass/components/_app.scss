@@ -1,0 +1,11 @@
+.container__background {
+  background-color: $color-background;
+  min-height: 100vh;
+  height: 100%;
+}
+.create__title,
+.list__title {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
