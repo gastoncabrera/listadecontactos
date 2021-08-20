@@ -18,20 +18,52 @@ const InicialState = [
   },
 ];
 const App = () => {
-  const [db, setDb] = useState(InicialState);
-  const [tabledb, setTabledb] = useState(InicialState);
+  const [db, setDb] = useState([]);
+  const [tabledb, setTabledb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
+
   useEffect(() => {
-    db.sort(function (a, b) {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
+    let dblocal = localStorage.getItem("todo list");
+    if (db != null) {
+      setDb(JSON.parse(dblocal));
+      setTabledb(JSON.parse(dblocal));
+    } else {
+      setDb(
+        {
+          name: "Priscila nuevo",
+          id: 2,
+          lastName: "Espinoza",
+          celNumber: 3794863561,
+        },
+        {
+          name: "Gaston nuevo",
+          id: 1,
+          lastName: "Cabrera",
+          celNumber: 3794562359,
+        }
+      );
+      setTabledb([
+        {
+          name: "Priscila nuevo",
+          id: 2,
+          lastName: "Espinoza",
+          celNumber: 3794863561,
+        },
+        {
+          name: "Gaston nuevo",
+          id: 1,
+          lastName: "Cabrera",
+          celNumber: 3794562359,
+        },
+      ]);
+    }
+  }, []);
+  console.log(db);
+  useEffect(() => {
+    let dataLocal = JSON.stringify(db);
+    localStorage.setItem("todo list", dataLocal);
   }, [db]);
+
   const Create = (data) => {
     data.id = Date.now();
     setDb([...db, data]);
