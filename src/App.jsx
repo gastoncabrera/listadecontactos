@@ -3,23 +3,10 @@ import Form from "./components/Form";
 import CardContainer from "./components/CardContainer";
 import "./sass/pages/home.scss";
 
-const InicialState = [
-  {
-    name: "Priscila",
-    id: 2,
-    lastName: "Espinoza",
-    celNumber: 3794863561,
-  },
-  {
-    name: "Gaston",
-    id: 1,
-    lastName: "Cabrera",
-    celNumber: 3794562359,
-  },
-];
+const InicialState = [];
 const App = () => {
-  const [db, setDb] = useState([]);
-  const [tabledb, setTabledb] = useState([]);
+  const [db, setDb] = useState(InicialState);
+  const [tabledb, setTabledb] = useState(InicialState);
   const [dataToEdit, setDataToEdit] = useState(null);
 
   useEffect(() => {
@@ -58,7 +45,6 @@ const App = () => {
       ]);
     }
   }, []);
-  console.log(db);
   useEffect(() => {
     let dataLocal = JSON.stringify(db);
     localStorage.setItem("todo list", dataLocal);
@@ -68,11 +54,6 @@ const App = () => {
     data.id = Date.now();
     setDb([...db, data]);
     setTabledb([...tabledb, data]);
-  };
-  const Update = (data) => {
-    let newData = db.map((el) => (el.id === data.id ? data : el));
-    setDb(newData);
-    setTabledb(newData);
   };
   const Delete = (id) => {
     let confirm = window.confirm("Desea eliminar este usuario");
