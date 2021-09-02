@@ -55,6 +55,7 @@ const App = () => {
     setDb([...db, data]);
     setTabledb([...tabledb, data]);
   };
+  const Update = (data) => {};
   const Delete = (id) => {
     let confirm = window.confirm("Desea eliminar este usuario");
     if (confirm) {
